@@ -1,0 +1,285 @@
+\documentclass[a4paper]{article}
+
+\input{../style/common.tex}
+\input{../style/scala.tex}
+
+\lstset{frame=, basicstyle={\footnotesize\ttfamily}}
+
+
+
+\graphicspath{ {images/} }
+
+%-----------------------------------------BEGIN DOC----------------------------------------
+
+\begin{document}
+
+\title{{\Huge ercesiMIPS Lab Manual{\large\linebreak\\}}{\Large A guide to Single Cyclic CPU with 7-9(11) MIPS Instructions\linebreak\linebreak}
+\linebreak{\Large[\nameref{c}]}
+\linebreak{\small click on it\linebreak}}
+\author{\\Authors: Jianfeng An, Meng Zhang \& Danghui Wang\\\\
+CS 11007 Computer Organization and Architecture\\
+(Spring, 2017)\\\\
+Northwestern Polytechnical University, China\\
+Faculty of Computer Science\\
+ERCESI}
+\date{27 April 2017}
+\maketitle
+\newpage
+
+%-----------------------------------------ABSTRACT-------------------------------------
+
+{\large\bf{"SWEET JEZUS WHY!?"\\}}
+\begin{addmargin}[2em]{2em}{\setstretch{0.6}{\small\textit{If you're reading this, chances are that either your arms are suffering from anemia in waiting for the TA's to finish helping the 20 people in the room, or you're trying to design in Chisel without any TA's whatsoever, and you just wanna end it all. Fret not! This document serves as a specification for basic explanations of single cyclic MIPS CPU with 7-11 instructions supporting, also a helpful links and forbidden deigning secrets whose names none dare speak.}}}
+\end{addmargin}
+\tableofcontents\label{c}
+\newpage
+
+%------------------------------------------TEXT--------------------------------------------
+
+%----------------------------------------OVERVIEW-----------------------------------------
+
+\section{Overview} \label{overview}%------------------------------
+The structure of Single cyclic MIPS CPU has been introduced in CS 11007 class lecture.
+\begin{itemize}
+	\item{\textbf{Supported Instructions} includes \emph{sub, add, or, ori, lw, sw, lst, beq, j}, or adding \emph{addi, and, andi} for better programming experience in assembly. All these instructions can be supported without exception detecting (overflow detecting)}
+    \item{\textbf{All instructions work in one cycle.} For the very beginning stage, Single Cyclic CPU model is a great example to explain how CPU works.}
+    \item{\textbf{Consisted of Data Path, Control Unit and Memory Unit.} To illustrate the typical systematic idea of computer, we recommend you design your first CPU with two separated modules, CPath and DPath, in such coding style, both blocks can also be easily verified separately. Additionally, if more complement MIPS ISA is chosen, this structure will be high efficient to be extended.}
+    \item{\textbf{Chisel3 is also recommended.} Chisel is a powerful structural hardware description language, with more efficient expression for block, operation, and IO bundles compared with Verilog. However, the most significant feature of Chisel is that it can express the structure of system without detailed circuits coding. Further more, we prefer Chisel3 instead of Chisel2, which relies on verilator for verilog simulations instead of Synopsys vcs. The difference between these tow versions can be referenced here: \url{https://github.com/ucb-bar/chisel3/wiki/Chisel3-vs-Chisel2}.}
+\end{itemize}
+
+%-----------------------------------------Specification-------------------------------------------
+
+\newpage
+\section{Specification} \label{Specification}%------------------------------
+A typical single cyclic CPU core is consisted of Control Unit and Data Path unit. In lecture 10~11, the whole system is illustrated in Fig. \ref{fig:singleblock}. 
+\begin{figure}[ht]
+ \centering
+ \includegraphics[height=5cm]{images/l1sys.pdf}
+ \caption{Single Cyclic CPU Block Diagram}
+ \label{fig:singleblock}
+\end{figure}
+
+\textbf{Two Module classes are recommended for Control Unit and Data Path Unit respectively}, as shown in following Fig. \ref{fig:modules}. Although the Harvard structure is adopted now to simplify the memory control and initialization, a MIPS adaptive memory model (Princeton Structure) is mandatory in further MIPS program test (for Multi-cyclic CPU Lab).  
+\begin{figure}[ht]
+ \centering
+ \includegraphics[height=7cm]{images/l1modules.pdf}
+ \caption{Single Cyclic CPU Block Diagram}
+ \label{fig:modules}
+\end{figure}
+In Fig. \ref{fig:modules}, almost all signals can be renamed by your self except those evaluation required singles specified in Section \ref{sub:signal}.
+%---------------------------------------Chisel 3------------------------------------------
+
+\newpage
+\section{Chisel3 101} \label{Datatypes}%------------------------------
+\subsection{Files, Directory and \code{package}}\label{sub:package}
+All designed files should contain \code{package} definition at the very beginning position for \code{sbt} interpreting.
+\begin{scala} 
+package SingleCycle
+\end{scala} 
+If the package name is re-defined by you own, please check all files to revise the package name.
+Theoretically,  the files with correct package definition could be placed anywhere of \code{src} directory. We preferred \code{src/main/scala/SingleCycle} for the design files and \code{src/test/scala/SingleCycle} for the tests files.
+
+\subsection{Define Ports}\label{sub:io}
+In single cycle ercesiMIPS project, bunches of singles connect Control Unit and Data Path Unit, which are only with different direction in different \textbf{Module}. Simply wrap the object in an \code{Input()} or \code{Output()} function. A example of \code{CtltoDatIo} is defined below.      
+\begin{scala}
+class CtltoDatIo extends Bundle()
+{
+	val nPC_MUX_sel = Output(Bool())
+	val RegWr		= Output(Bool())
+	val RegDst		= Output(Bool())
+	val ExtOp		= Output(Bool())
+	val ALUctr		= Output(UInt(2.W))
+	val ALUsrc		= Output(Bool())
+	val MemtoReg	= Output(Bool())
+	val Rd 			= Output(UInt(5.W))
+	val Rt 			= Output(UInt(5.W))
+	val Rs 			= Output(UInt(5.W))
+	val Imm16 		= Output(UInt(16.W))
+	val	Imm26		= Output(UInt(26.W))
+}
+\end{scala}
+To make the definition efficiently, the signals can be instanced in both modules, as shown below:
+\begin{multicols}{2}
+\begin{scala}
+class CPathIo extends Bundle()
+{
+	val Inst 		= Input(UInt(32.W))
+	val resetSignle = Input(Bool())
+	val MemWr		= Output(Bool())
+	val valid		= Output(Bool())
+	val ctl 		= new CtltoDatIo()
+	val dat 		= new DatToCtlIo().flip()
+}
+
+class CtlPath extends Module()
+{
+	val io 			= IO(new CPathIo ())
+	...
+}
+\end{scala}
+\columnbreak
+\begin{scala}
+class DatToCtlIo extends Bundle()
+{
+	val cmp_out = Output(Bool())
+}
+class DPathIo extends Bundle()
+{
+	//val host		= new HTIFIO()
+	val imem_addr	= Output(UInt(32.W))
+	val dmem_addr	= Output(UInt(32.W))
+	val dmem_datIn	= Output(UInt(32.W))
+	val dmem_datOut	= Input(UInt(32.W))
+	val ctl  		= new CtltoDatIo().flip()
+	val dat  		= new DatToCtlIo()
+}
+
+class DatPath extends Module {
+	val io = IO(new DPathIo ())
+	...
+}
+\end{scala}
+\end{multicols}
+
+In these examples, the connected IOs in different modules are instanced with \code{flip()}
+function for reversing its direction.
+\subsection{Define a Module} \label{sub:module}
+To object the hierarchical mechanism, modules defined in Chisel are described as a type of new \textbf{Module} class, shown as below.
+\begin{scala}
+class DatPath extends Module {
+	val io = IO(new DPathIo ())
+	// Internal Signal
+	val BusA 	= Wire(UInt(32.W))
+	val BusB 	= Wire(UInt(32.W))
+	......
+	......
+}
+\end{scala}
+In which, a user-defined Data Path module, with module name \code{DatPath}, is defined as a \textit{class} which:
+\begin{itemize}
+	\item inherits from Module,
+	\item contains an interface wrapped in an \code{IO()} function and stored in a port field named io, and
+	\item wires together subcircuits in its constructor.
+\end{itemize}
+
+%---------------------------------------Evalu Req------------------------------------------
+
+\newpage
+\section{Evaluation Requirement} \label{sec:Functions}%------------------------------
+We (or TAs) will check and evaluate your design with a pre-coded test program, in which a pseudo-random instruction queue will be feed into you instruction memory and data memory. To ensure this test works correctly, the test signal interfaces name \textbf{MUST} meets the requirements shown in Table \ref{tab:signaldef}, and the logic operation of these interfaces \textbf{MUST} be design as
+\subsection{Test Procedure}\label{sub:TestProc}
+As Operation System is still not available for this stage, the program and initial data are feed into Instruction Memory and Data Memory from the Tester program respectively. By utilizing \code{ori} instruction, the Tester program provides an alternative data memory initialization, \code{\$t = \$zero | imm16} (\code{ori, rt, \$zero Imm16}). In which, \code{\$t} stores the result of \textit{or} operation (immediate "or" zero register), i.e. the immediate is loaded into register file by \code{ori} instruction.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[height=7cm]{images/l1TestProc.pdf}
+ \caption{Test Procedure}
+ \label{fig:testproc}
+\end{figure}
+
+Fig. \ref{fig:testproc} shows the whole test procedure. In which, the designed CPU is denoted by DUT (Design under Test), the instruction is feed into Imem at the initialization stage, and the data about how program running is collected at the end.
+
+\subsection{Signals for Test mode}\label{sub:signal}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=9cm]{images/l1ModulesTest.pdf}
+	\caption{Top Block Diagram for Test Mode}
+	\label{fig:moduletest}
+\end{figure}
+%\url{}
+The recommended Top block structure is shown in Fig. \ref{fig:moduletest}, which the blue marked interfaces are connected with testbench. So please define these interfaces in your top module as exactly the same as Table \ref{tab:signaldef} shown.
+
+\begin{table}[htp]
+\caption{Signals Definition for Test Mode}\label{tab:signaldef}
+\begin{center}
+	\begin{tabular}{|l|l|l|p{6cm}|}
+	\hline
+	\textbf{Signal Name} & \textbf{Direction} & \textbf{Width} & \textbf{Function}\\ \hline \hline
+	boot			& Input 	& 1-bit	& Trigger the boot test mode, 
+									  set to 0 in CPU regular process mode\\ \hline
+	test\_im\_wr 	& Input	& 1-bit	& Instruction memory write enable in test mode,set to 0 in 	
+								  CPU regular process mode. In test mode, it will be set to 1 when if writing instructions to imem, otherwise it is set to 0.\\ \hline
+	test\_im\_re 	& Input & 1-bit & Instruction memory read enable in test mode,set to 0 in 	
+								  CPU regular process mode. In test mode, it will be set to 1 when if reading instructions out, otherwise it is set to 0. \\ \hline
+	test\_im\_addr 	& Input & 32-bit& Instruction memory address\\ \hline
+	test\_im\_in 	& Input & 32-bit& Instruction memory data input for test mode. \\ \hline
+	test\_im\_out 	& Output& 32-bit& Instruction memory data output for test mode. \\ \hline
+	test\_dm\_wr 	& Input	& 1-bit	& Data memory write enable in test mode,set to 0 in 	
+								  CPU regular process mode. In test mode, it will be set to 1 when if writing data to dmem, otherwise it is set to 0.\\ \hline
+	test\_dm\_re 	& Input & 1-bit & Data memory read enable in test mode,set to 0 in 	
+								  CPU regular process mode. In test mode, it will be set to 1 when if reading data out, otherwise it is set to 0.\\ \hline
+	test\_dm\_addr 	& Input & 32-bit& Data memory address\\ \hline
+	test\_dm\_in 	& Input & 32-bit& Data memory input for test mode. \\ \hline
+	test\_dm\_out 	& Output& 32-bit& Data memory output for test mode. \\ \hline
+	valid			& Output& 1-bit & If CPU stopped or any exception happens, valid signal is set to 0.\\ 
+	\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Additionally, a \code{valid} signal is highly recommended. It can be monitored to find whether CPU works correctly. As shown in Table \ref{tab:signaldef}, \code{valid} will be set to 0, if the fetched instruction is not defined in our 7-Inst ISA (e.g. \code{0xFFFFFFFF}), which is to tell test the CPU is working in exception.
+
+\subsection{Basic Logic for Test}\label{sub:testlogic}
+Please add the test logic into your top module as shown in Table \ref{tab:logic}.\\
+An example \code{Top} Module is presented below:
+\begin{scala}
+class TopIO extends Bundle() {
+	val boot = Input(Bool()) 
+// imem and dmem interface for Tests
+	val test_im_wr		= Input(Bool())
+	val test_im_rd 		= Input(Bool())
+	val test_im_addr 	= Input(UInt(32.W))
+	val test_im_in 		= Input(UInt(32.W))
+	val test_im_out 	= Output(UInt(32.W))
+
+	val test_dm_wr		= Input(Bool())
+	val test_dm_rd 		= Input(Bool())
+	val test_dm_addr 	= Input(UInt(32.W))
+	val test_dm_in 		= Input(UInt(32.W))
+	val test_dm_out 	= Output(UInt(32.W))
+
+	val valid			= Output(Bool())
+}
+class Top extends Module() {
+	val io 		= IO(new TopIO())//in chisel3, io must be wrapped in IO(...) 
+	//...
+	when (io.boot & io.test_im_wr){
+		imm(io.test_im_addr) := io.test_im_in
+		} .elsewhen (io.boot & io.test_dm_wr){
+		// please finish it
+		} //...
+}
+\end{scala}
+\begin{table}[htp]
+	\caption{Logic Operation in Test Mode}\label{tab:logic}
+	\begin{center}
+		\begin{tabular}{|l|c|c|}
+		\hline
+		\textbf{Operation}	& \textbf{Signal}	& \textbf{Boolean Logic} \\ \hline
+		\multirow{5}{*}{Imem Write}& boot		& 1 \\ \cline{2-3}
+							& test\_im\_wr 		& 1 \\ \cline{2-3}
+							& test\_im\_rd 		& 0 \\ \cline{2-3}
+							& test\_dm\_wr 		& 0 \\ \cline{2-3}
+							& test\_dm\_rd 		& 0 \\ \hline
+		\multirow{5}{*}{Dmem Write}& boot 		& 1 \\ \cline{2-3}
+							& test\_im\_wr 		& 0 \\ \cline{2-3}
+							& test\_im\_rd 		& 0 \\ \cline{2-3} 
+							& test\_dm\_wr 		& 1 \\ \cline{2-3}
+							& test\_dm\_rd 		& 0 \\ \hline
+		\multirow{5}{*}{Imem Read}& boot 		& 1 \\ \cline{2-3}
+							& test\_im\_wr 		& 0 \\ \cline{2-3}
+							& test\_im\_rd 		& 1 \\ \cline{2-3} 
+							& test\_dm\_wr 		& 0 \\ \cline{2-3}
+							& test\_dm\_rd 		& 0 \\ \hline
+		\multirow{5}{*}{Dmem Read}& boot 		& 1 \\ \cline{2-3}
+							& test\_im\_wr 		& 0 \\ \cline{2-3}
+							& test\_im\_rd 		& 0 \\ \cline{2-3} 
+							& test\_dm\_wr 		& 0 \\ \cline{2-3}
+							& test\_dm\_rd 		& 1 \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\end{document}
+

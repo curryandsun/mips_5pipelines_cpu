@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="98febe85-cf9b-42fb-8eaf-b8d3225e3bc8" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/project/project/target/" />
+    <ignored path="$PROJECT_DIR$/project/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Pipelines.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/Pipeline/Pipelines.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1278">
+              <caret line="189" column="4" selection-start-line="189" selection-start-column="4" selection-end-line="189" selection-end-column="4" />
+              <folding>
+                <element signature="e#365#381#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PipeTests.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/scala/Pipeline/PipeTests.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-723">
+              <caret line="80" selection-start-line="80" selection-end-line="80" />
+              <folding>
+                <element signature="e#346#385#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PipeTests_p.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/scala/Pipeline/PipeTests_p.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="129">
+              <caret line="104" column="29" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="29" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bubble_sort.coe" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data_p/bubble_sort.coe">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="CP0.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/Pipeline/CP0.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="e#18#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Shamt</find>
+      <find>N</find>
+      <find>&quot;b000000&quot;.U(6.W)</find>
+      <find>16920004</find>
+      <find>wrong</find>
+      <find>5afb</find>
+      <find>v0</find>
+      <find>24030003</find>
+      <find>3508561e</find>
+      <find>1043001b</find>
+      <find>24030002</find>
+      <find>42000018</find>
+      <find>240e4340</find>
+      <find>24030001</find>
+      <find>1612037b</find>
+      <find>&quot;b100001&quot;.U(6.W)</find>
+      <find>&quot;b1111&quot;.U(4.W)</find>
+      <find>val</find>
+      <find>=</find>
+      <find>0.U</find>
+      <find>14520377</find>
+      <find>&quot;b100011&quot;.U(6.W)</find>
+      <find>ALUout</find>
+      <find>eret</find>
+      <find>8</find>
+      <find>beq</find>
+      <find>IsExc</find>
+      <find>IPC</find>
+      <find>flag</find>
+      <find>bfc00cb0</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>Inst</replace>
+      <replace>control</replace>
+      <replace>io.in1</replace>
+      <replace>io.in2</replace>
+      <replace>io.ALUctr</replace>
+      <replace>io.boot</replace>
+      <replace>alu</replace>
+      <replace>io.ALU_out</replace>
+      <replace>io.ALUout</replace>
+      <replace>io.Inst</replace>
+      <replace>IF_ID_ins</replace>
+      <replace>O</replace>
+      <replace>I</replace>
+      <replace>RegInit</replace>
+      <replace>init</replace>
+      <replace>:</replace>
+      <replace>:=</replace>
+      <replace>false.B</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/test/scala/MultiCycle/Launcher.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/MultiCycle/DatPath.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/MultiCycle/inst.s" />
+        <option value="$PROJECT_DIR$/src/test/scala/MultiCycle/TopTests.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/MultiCycle/CtlPath.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/MultiCycle/Top.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/Top.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/DatPath.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/CtlPath.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/SingleCycle/Launcher.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/SingleCycle/PiplineTopTests2.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/Pipelines2.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/SingleCycle/PipeTests2.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/scriptFile.scala" />
+        <option value="$PROJECT_DIR$/scriptFile.scala" />
+        <option value="$PROJECT_DIR$/n1_add.s" />
+        <option value="$PROJECT_DIR$/src/test/scala/SingleCycle/binary_inst.s" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/DataCheck.scala" />
+        <option value="$PROJECT_DIR$/n1_add.txt" />
+        <option value="$PROJECT_DIR$/inst.s" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/Counter.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/Decode.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/instructions.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/CMP.scala" />
+        <option value="$PROJECT_DIR$/test.s" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/ALU.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/SingleCycle/PipeTests.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/Define.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/SingleCycle/Pipelines.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/Pipeline/Counter.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/Pipeline/DataCheck.scala" />
+        <option value="$PROJECT_DIR$/src/test/Pipeline/SingleCycle/PipeTests.scala" />
+        <option value="$PROJECT_DIR$/src/test/Pipeline/SingleCycle/Launcher.scala" />
+        <option value="$PROJECT_DIR$/src/test/Scala/Pipeline/Launcher.scala" />
+        <option value="$PROJECT_DIR$/func_test/╗у▒р/n55_eret.txt" />
+        <option value="$PROJECT_DIR$/src/main/scala/Pipeline/CMP.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/Pipline/DMem.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/Pipline/ALU.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/Pipline/PiplineTopTests.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/Pipeline/EXP.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/Pipeline/EXC.scala" />
+        <option value="$PROJECT_DIR$/mips-异常 (1).asm" />
+        <option value="$PROJECT_DIR$/src/main/scala/Pipeline/ALU.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/Pipeline/Define.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/Pipeline/CP0.scala" />
+        <option value="$PROJECT_DIR$/╨╘─▄▓т╩╘│╠╨Є/obj/bubble_sort/inst_ram.coe" />
+        <option value="$PROJECT_DIR$/src/test/scala/Pipeline/Launcher.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/Pipeline/Launcher_p.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/Pipeline/PipeTests.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/Pipeline/Pipelines.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/Pipeline/PipeTests_p.scala" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-91" />
+    <option name="y" value="324" />
+    <option name="width" value="1396" />
+    <option name="height" value="848" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ercesiMIPS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pipelines_final" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ercesiMIPS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pipelines_final" type="462c0819:PsiDirectoryNode" />
+              <item name="data_p" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ercesiMIPS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pipelines_final" type="462c0819:PsiDirectoryNode" />
+              <item name="perf_test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ercesiMIPS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pipelines_final" type="462c0819:PsiDirectoryNode" />
+              <item name="perf_test" type="462c0819:PsiDirectoryNode" />
+              <item name="obj" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ercesiMIPS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pipelines_final" type="462c0819:PsiDirectoryNode" />
+              <item name="perf_test" type="462c0819:PsiDirectoryNode" />
+              <item name="obj" type="462c0819:PsiDirectoryNode" />
+              <item name="crc32" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ercesiMIPS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pipelines_final" type="462c0819:PsiDirectoryNode" />
+              <item name="test_run_dir" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/scala/SingleCycle" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Launcher_p">
+    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Pipeline.Launcher" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SingleCycle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="Launcher_p" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Pipeline.Launcher_p" />
+      <module name="pipelines_final" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Pipeline.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="Pipegen (1)" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Pipeline.Pipegen" />
+      <module name="pipelines_final" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Pipeline.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="Pipegen" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Pipeline.Launcher" />
+      <module name="pipelines_final" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Pipeline.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="PiplineTopTests" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Pipline.PiplineTopTests" />
+      <module name="pipelines_final" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Pipline.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Launcher" />
+      <item itemvalue="Application.Pipegen" />
+      <item itemvalue="Application.Pipegen (1)" />
+      <item itemvalue="Application.PiplineTopTests" />
+      <item itemvalue="Application.Launcher_p" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Launcher_p" />
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.PiplineTopTests" />
+        <item itemvalue="Application.Pipegen (1)" />
+        <item itemvalue="Application.Pipegen" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="ercesiMIPS" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="pipelines_final" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+              <ExternalProjectPojo>
+                <option name="name" value="pipelines_final-build" />
+                <option name="path" value="$PROJECT_DIR$/project" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$" value="3024380592000" />
+        <entry key="$PROJECT_DIR$/build.sbt" value="3142551742" />
+        <entry key="$PROJECT_DIR$/project/build.properties" value="1198701921" />
+      </map>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98febe85-cf9b-42fb-8eaf-b8d3225e3bc8" name="Default" comment="" />
+      <created>1526536083456</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1526536083456</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="62" y="-11" width="1539" height="912" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="2" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.22136422" />
+      <window_info anchor="right" id="sbt" order="3" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info id="Image Layers" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="9" weight="0.3297659" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24967825" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.22136422" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Designer" order="2" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49630997" visible="true" weight="0.21137124" />
+      <window_info anchor="bottom" id="sbt-shell-toolwindow" order="8" weight="0.32947233" />
+      <window_info id="Structure" order="1" sideWeight="0.50369006" side_tool="true" weight="0.20401338" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.24949832" />
+      <window_info id="UI Designer" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3989704" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info anchor="right" id="Gradle" order="7" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32947233" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Build" order="11" weight="0.11840412" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.24949832" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="8" />
+    </breakpoint-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/test/Pipeline/SingleCycle/PipeTests.scala" />
+    <entry file="file://$PROJECT_DIR$/src/test/Pipeline/SingleCycle/Launcher.scala" />
+    <entry file="file://$PROJECT_DIR$/src/test/Scala/Pipeline/PipeTests.scala" />
+    <entry file="file://$PROJECT_DIR$/src/test/Scala/utils/ercesiMIPSRunner.scala" />
+    <entry file="file://$PROJECT_DIR$/src/test/Scala/Pipeline/Launcher.scala" />
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipeline/Counter.scala" />
+    <entry file="file://$PROJECT_DIR$/n78_jr_ds.txt" />
+    <entry file="file://$PROJECT_DIR$/func_test/╗у▒р/n35_bltzal.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="18237" column="20" selection-start-line="18237" selection-start-column="12" selection-end-line="18237" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/func_test/Inst/n55_eret.s">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="7" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/func_test/Inst/n45_break.s">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/func_test/╗у▒р/n46_syscall.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipeline/CMP (复件).scala" />
+    <entry file="file://$PROJECT_DIR$/func_test/Inst/n56_mfc0.s">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="8" lean-forward="true" selection-start-column="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/func_test/╗у▒р/n56_mfc0.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/func_test/Inst/n58_add_ex.s">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2436">
+          <caret line="4300" selection-start-line="4300" selection-end-line="4300" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipeline/DataCheck.scala" />
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipeline/CMP.scala" />
+    <entry file="file://$PROJECT_DIR$/src/test/scala/utils/ercesiMIPSRunner.scala" />
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipline/DMem.scala" />
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipline/Adder.scala" />
+    <entry file="file://$PROJECT_DIR$/src/test/scala/Pipline/TopTest.scala" />
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipline/ALU.scala" />
+    <entry file="file://$PROJECT_DIR$/src/test/scala/Pipline/PiplineTopTests.scala" />
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipeline/EXP.scala" />
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipeline/EXC.scala" />
+    <entry file="file://$PROJECT_DIR$/func_test/╗у▒р/n58_add_ex.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="48" selection-start-line="48" selection-end-line="48" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/func_test/╗у▒р/n45_break.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipeline/ALU.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2017">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/func_test/╗у▒р/n61_lh_ex.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/func_test/╗у▒р/n81_bne_ex_ds.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-135" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/func_test/╗у▒р/n55_eret.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/func_test/╗у▒р/n80_beq_ex_ds.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="1318" column="23" selection-start-line="1318" selection-start-column="20" selection-end-line="1318" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/func_test/╗у▒р/n64_sh_ex.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipeline/Define.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/func_test/╗у▒р/n66_eret_ex.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="3034" column="39" selection-start-line="3034" selection-start-column="39" selection-end-line="3034" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mips-异常 (1).asm" />
+    <entry file="file://$PROJECT_DIR$/func_test/╗у▒р/n29_beq.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="96" column="26" selection-start-line="96" selection-start-column="26" selection-end-line="96" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/╨╘─▄▓т╩╘│╠╨Є/obj/bitcount/inst_ram.coe" />
+    <entry file="file://$PROJECT_DIR$/╨╘─▄▓т╩╘│╠╨Є/obj/bubble_sort/inst_ram.coe" />
+    <entry file="file://$PROJECT_DIR$/Inst/n1_add.s">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="2400" selection-start-line="2400" selection-end-line="2401" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/Pipeline/Launcher_p.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.10.6-sources.jar!/scala/collection/Iterator.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="741" selection-start-line="741" selection-end-line="741" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_p/dhrystone.coe">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipeline/CP0.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#18#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_p/coremark.coe">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6933" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inst_p/coremark.coe">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-154548" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_p/bubble_sort.coe">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/perf_test/obj/crc32/test.s">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="1571" column="36" selection-start-line="1571" selection-start-column="28" selection-end-line="1571" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Pipeline/Pipelines.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1278">
+          <caret line="189" column="4" selection-start-line="189" selection-start-column="4" selection-end-line="189" selection-end-column="4" />
+          <folding>
+            <element signature="e#365#381#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/Pipeline/PipeTests.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-723">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+          <folding>
+            <element signature="e#346#385#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/Pipeline/PipeTests_p.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="104" column="29" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="29" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

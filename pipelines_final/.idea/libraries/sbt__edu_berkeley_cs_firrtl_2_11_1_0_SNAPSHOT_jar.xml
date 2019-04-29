@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbt: edu.berkeley.cs:firrtl_2.11:1.0-SNAPSHOT:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/edu.berkeley.cs/firrtl_2.11/jars/firrtl_2.11-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

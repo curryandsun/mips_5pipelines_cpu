@@ -1,0 +1,112 @@
+/*
+  val IF_ID_ins =     RegInit(init = 0.U(32.W))
+  val IF_ID_pcPlus4 = RegNext(next = pc_plus4)
+
+  //WB
+  val ID_EX_RegWr =   RegNext(next =RegWr)
+  val ID_EX_RegSrc =  RegNext(next =RegSrc)
+  val ID_EX_AL =      RegNext(next = AL)
+  //M
+  val ID_EX_MemWr =   RegNext(next =MemWr)
+  //EX
+  val ID_EX_Jr =      RegNext(next = Jr)
+  val ID_EX_Shamt =   RegNext(next = Shamt)
+  val ID_EX_RegDst =  RegNext(next = RegDst)
+  val ID_EX_ALUctr=   RegNext(next = ALUctr)
+  val ID_EX_ALUsrc=   RegNext(next = ALUsrc)
+  val ID_EX_Jump=     RegNext(next =Jump)
+  val ID_EX_BorJ=     RegNext(next =BorJ)
+  val ID_EX_CMPctr=   RegNext(next = CMPctr)
+  //DATA
+  val ID_EX_BusA=     RegNext(next = BusA)
+  val ID_EX_BusB=     RegNext(next = BusB)
+  val ID_Ex_Rs=       RegNext(next = Rs)
+  val ID_EX_Rd=       RegNext(next = Rd)
+  val ID_EX_Rt=       RegNext(next = Rt)
+  val ID_EX_pcPlus4=  RegNext(next = IF_ID_pcPlus4)
+  val ID_EX_Imm26=    RegNext(next = Imm26)
+  val ID_EX_Imm32=    RegNext(next = Imm32)
+
+  //WB
+  val EX_MEM_RegWr =  RegNext(next =ID_EX_RegWr)
+  val EX_MEM_RegSrc = RegNext(next =ID_EX_RegSrc)
+  val EX_MEM_AL =     RegNext(next =ID_EX_AL)
+  //M
+  val EX_MEM_MemWr =  RegNext(next =ID_EX_MemWr)
+  //DATA
+  val EX_MEM_pcAL=    RegNext(next = ID_EX_pcPlus4+4.U)
+  val EX_MEM_ALUout=  RegNext(next = Mux(ID_EX_Jr,cp0.io.dataout,alu.io.ALUout))//JR用于CP0控制
+  val EX_MEM_Rt=      RegNext(next = ID_EX_Rt)
+  val EX_MEM_LSctr=   RegNext(next = ID_EX_CMPctr)
+  val EX_MEM_CMPout=  RegNext(next = cmp.io.CMPout)
+  val EX_MEM_dataIn=  RegNext(next = ID_EX_BusB)
+  val EX_MEM_reg_index=RegNext(next = Mux(ID_EX_AL,31.U(5.W),Mux(ID_EX_RegDst, ID_EX_Rd, ID_EX_Rt)))//AL高时，直接写回31号寄存器
+
+
+  //WB
+  val MEM_WB_RegWr =  RegNext(next =EX_MEM_RegWr)
+  val MEM_WB_RegSrc = RegNext(next =EX_MEM_RegSrc)
+  val MEM_WB_AL =     RegNext(next =EX_MEM_AL)
+  //DATA
+  val MEM_WB_pcAL=    RegNext(next = EX_MEM_pcAL)
+  val MEM_WB_ALUout=  RegNext(next = EX_MEM_ALUout)
+  val MEM_WB_CMPout=  RegNext(next = EX_MEM_CMPout)
+  val MEM_WB_reg_index=RegNext(next = EX_MEM_reg_index)
+  val MEM_WB_MemOut=  RegNext(next = Memout)
+  */
+
+
+val IF_ID_ins =     RegInit(init = 0.U(32.W))
+   val IF_ID_pcPlus4 = RegNext(next = Mux(IF_ID_Flush,0.U,pc_plus4))
+
+   //WB
+   val ID_EX_RegWr =   RegNext(next =Mux(ID_EX_Flush,false.B,RegWr))
+   val ID_EX_RegSrc =  RegNext(next =Mux(ID_EX_Flush,Regsrc_X,RegSrc))
+   val ID_EX_AL =      RegNext(next = Mux(ID_EX_Flush,false.B,AL))
+   //M
+   val ID_EX_MemWr =   RegNext(next =Mux(ID_EX_Flush,false.B,MemWr))
+   //EX
+   val ID_EX_Jr =      RegNext(next = Mux(ID_EX_Flush,false.B,Jr))
+   val ID_EX_Shamt =   RegNext(next = Mux(ID_EX_Flush,false.B,Shamt))
+   val ID_EX_RegDst =  RegNext(next = Mux(ID_EX_Flush,false.B,RegDst))
+   val ID_EX_ALUctr=   RegNext(next = Mux(ID_EX_Flush,0.U,ALUctr))
+   val ID_EX_ALUsrc=   RegNext(next = Mux(ID_EX_Flush,false.B,ALUsrc))
+   val ID_EX_Jump=     RegNext(next = Mux(ID_EX_Flush,false.B,Jump))
+   val ID_EX_BorJ=     RegNext(next = Mux(ID_EX_Flush,false.B,BorJ))
+   val ID_EX_CMPctr=   RegNext(next = Mux(ID_EX_Flush,0.U,CMPctr))
+   //DATA
+   val ID_EX_BusA=     RegNext(next = Mux(ID_EX_Flush,0.U,BusA))
+   val ID_EX_BusB=     RegNext(next = Mux(ID_EX_Flush,0.U,BusB))
+   val ID_Ex_Rs=       RegNext(next = Mux(ID_EX_Flush,0.U,Rs))
+   val ID_EX_Rd=       RegNext(next = Mux(ID_EX_Flush,0.U,Rd))
+   val ID_EX_Rt=       RegNext(next = Mux(ID_EX_Flush,0.U,Rt))
+   val ID_EX_pcPlus4=  RegNext(next = Mux(ID_EX_Flush,0.U,IF_ID_pcPlus4))
+   val ID_EX_Imm26=    RegNext(next = Mux(ID_EX_Flush,0.U,Imm26))
+   val ID_EX_Imm32=    RegNext(next = Mux(ID_EX_Flush,0.U,Imm32))
+
+   //WB
+   val EX_MEM_RegWr =  RegNext(next =Mux(EX_MEM_Flush,false.B,ID_EX_RegWr))
+   val EX_MEM_RegSrc = RegNext(next =Mux(EX_MEM_Flush,false.B,ID_EX_RegSrc))
+   val EX_MEM_AL =     RegNext(next =Mux(EX_MEM_Flush,false.B,ID_EX_AL))
+   //M
+   val EX_MEM_MemWr =  RegNext(next =Mux(EX_MEM_Flush,false.B,ID_EX_MemWr))
+   //DATA
+   val EX_MEM_pcAL=    RegNext(next = Mux(EX_MEM_Flush,0.U,ID_EX_pcPlus4+4.U))
+   val EX_MEM_ALUout=  RegNext(next = Mux(EX_MEM_Flush,0.U,Mux(ID_EX_Jr,cp0.io.dataout,alu.io.ALUout)))//JR用于CP0控制
+   val EX_MEM_Rt=      RegNext(next = Mux(EX_MEM_Flush,0.U,ID_EX_Rt))
+   val EX_MEM_LSctr=   RegNext(next = Mux(EX_MEM_Flush,0.U,ID_EX_CMPctr))
+   val EX_MEM_CMPout=  RegNext(next = Mux(EX_MEM_Flush,0.U,cmp.io.CMPout))
+   val EX_MEM_dataIn=  RegNext(next = Mux(EX_MEM_Flush,0.U,ID_EX_BusB))
+   val EX_MEM_reg_index=RegNext(next = Mux(EX_MEM_Flush,0.U,Mux(ID_EX_AL,31.U(5.W),Mux(ID_EX_RegDst, ID_EX_Rd, ID_EX_Rt))))//AL高时，直接写回31号寄存器
+
+
+   //WB
+   val MEM_WB_RegWr =  RegNext(next =Mux(MEM_WB_Flush,false.B,EX_MEM_RegWr))
+   val MEM_WB_RegSrc = RegNext(next =Mux(MEM_WB_Flush,false.B,EX_MEM_RegSrc))
+   val MEM_WB_AL =     RegNext(next =Mux(MEM_WB_Flush,false.B,EX_MEM_AL))
+   //DATA
+   val MEM_WB_pcAL=    RegNext(next = Mux(MEM_WB_Flush,0.U,EX_MEM_pcAL))
+   val MEM_WB_ALUout=  RegNext(next = Mux(MEM_WB_Flush,0.U,EX_MEM_ALUout))
+   val MEM_WB_CMPout=  RegNext(next = Mux(MEM_WB_Flush,0.U,EX_MEM_CMPout))
+   val MEM_WB_reg_index=RegNext(next = Mux(MEM_WB_Flush,0.U,EX_MEM_reg_index))
+   val MEM_WB_MemOut=  RegNext(next = Mux(MEM_WB_Flush,0.U,Memout))

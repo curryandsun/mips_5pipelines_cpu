@@ -1,0 +1,280 @@
+\documentclass[a4paper]{article}
+
+\input{../style/common.tex}
+\input{../style/scala.tex}
+
+\lstset{frame=, basicstyle={\footnotesize\ttfamily}}
+
+
+
+\graphicspath{ {images/} }
+
+%-----------------------------------------BEGIN DOC----------------------------------------
+
+\begin{document}
+
+\title{{\Huge ercesiMIPS Lab Manual{\large\linebreak\\}}{\Large A guide to Pipeline CPU with MIPS 32 ISA Supports\linebreak\linebreak}
+\linebreak{\Large[\nameref{c}]}
+\linebreak{\small click on it\linebreak}}
+\author{\\Authors: Jianfeng An, Meng Zhang \& Danghui Wang\\\\
+CS 11007 Computer Organization and Architecture\\
+(May, 2017)\\\\
+Northwestern Polytechnical University, China\\
+Faculty of Computer Science\\
+ERCESI}
+\date{21 May 2017}
+\maketitle
+\newpage
+
+%-----------------------------------------ABSTRACT-------------------------------------
+
+{\large\bf{"SWEET JEZUS WHY!?"\\}}
+\begin{addmargin}[2em]{2em}{\setstretch{0.6}{\small\textit{If you're reading this, chances are that either your arms are suffering from anemia in waiting for the TA's to finish helping the 20 people in the room, or you're trying to design in Chisel without any TA's whatsoever, and you just wanna end it all. Fret not! This document serves as a specification for basic explanations of single cyclic MIPS CPU with 7-11 instructions supporting, also a helpful links and forbidden deigning secrets whose names none dare speak.}}}
+\end{addmargin}
+\tableofcontents\label{c}
+\newpage
+
+%------------------------------------------TEXT--------------------------------------------
+
+%----------------------------------------OVERVIEW-----------------------------------------
+
+\section{Overview} \label{overview}%------------------------------
+The structure of Multi cyclic MIPS CPU has been introduced in CS 11007 class lecture.
+\begin{itemize}
+	\item{\textbf{MIPS32 ISA compatible} our MIPS processor is MIPS32 ISA compatible, we are planing to supports all MIPS32 standard instructions, and partially support MIPS32 privileged instructions. The instruction manual set }
+    \item{\textbf{PIOM32, Pipelined in-order MIPS (32-bit)}, in this project, we implement a 32-bit MIPS processor with in-order pipelined data-path which supports MIPS32 ISA.}
+    \item{\textbf{Consisted of Data Path, Control Unit and Memory Unit.} To illustrate the typical systematic idea of computer, we recommend you design your first CPU with two separated modules, CPath and DPath, in such coding style, both blocks can also be easily verified separately. Additionally, if more complement MIPS ISA is chosen, this structure will be high efficient to be extended.}
+    \item{\textbf{Chisel3 is also recommended.}}
+\end{itemize}
+
+%-----------------------------------------System-------------------------------------------
+
+\newpage
+\section{System Structure} \label{Specification}%------------------------------
+As MISP 32 is configurable to support both Big-endian and Little-endian. Shall we support little-endian?
+%-----------------------------------------ISA-------------------------------------------
+
+\newpage
+\section{ISA}\label{isa}%------------------------------
+In our project, the target ISA is MIPS32, which is from Imagination Technologies, and copy rights reserved. This project is non-profit and education oriented. Please check License file for detailed copy right information. 
+
+The supported instructions of our xxxMIPS32 processor are subgroup of MIPS32 v6 which was released at 2014, listed below:
+\begin{table}[htp]
+\caption{Arithmetic Operations}\label{tab:mathinst}
+\begin{center}
+	\begin{tabular}{|l|l|l|l|}
+	\hline
+	
+	\textbf{Instructions} & \textbf{Code Format} & \textbf{Descriptions} & \textbf{Note}\\ \hline \hline
+	\tiny ADD RD, RS, RT 			&\tiny 000000???????????????00000100000	&	\tiny RD = RS + RT (OVERFLOW TRAP) 		& \\ \hline
+	ADDI RD, RS, CONST16 	&		&	RD = RS + CONST16± (OVERFLOW TRAP) 	& \\ \hline
+	ADDIU RD, RS, CONST16 	&		&	RD = RS + CONST16± 					& \\ \hline
+	ADDU RD, RS, RT			&		&	RD =RS +RT 							& \\ \hline
+	CLO RD, RS 				&		&	RD = COUNTLEADINGONES(RS) 			& \\ \hline
+	CLZ RD, RS 				&		&	RD = COUNTLEADINGZEROS(RS) 			& \\ \hline
+	LA RD, LABEL 			&		&	RD = ADDRESS(LABEL) 				& \\ \hline
+	LI RD, IMM32 			&		&	RD = IMM32 							& \\ \hline
+	LUI RD, CONST16 		&		&	RD = CONST16 << 16 					& \\ \hline
+	MOVE RD, RS 			&		&	RD = RS 							& \\ \hline
+	NEGU RD, RS 			&		&	RD = –RS 							& \\ \hline
+	SEBR2 RD, RS 			&		&	RD = RS7:0± 						& \\ \hline
+	SEHR2 RD, RS 			&		&	RD = RS15:0± 						& \\ \hline
+	SUB RD, RS, RT 			&		&	RD = RS – RT (OVERFLOW TRAP) 		& \\ \hline
+	SUBU RD, RS, RT 		&		&	RD =RS –RT 							& \\ \hline
+	\hline
+	\end{tabular}
+\end{center}
+\end{table}
+\normalsize
+%---------------------------------------Modules------------------------------------------
+
+\newpage
+\section{Modules \& Blocks} \label{modules}%------------------------------
+\subsection{IF Instruction Fetch}\label{sub:IF}
+Instruction Fetch stage fetches instructions from front-end structure. The interfaces are define in Table \ref{tab:SignalIF}.
+\begin{table}[htp]
+\caption{ Signals Definition of IF Module}\label{tab:SignalIF}
+\begin{center}
+	\begin{tabular}{|l|l|l|p{6cm}|}
+	\hline
+	\textbf{Signal Name} & \textbf{Direction} & \textbf{Width} & \textbf{Function}\\ \hline \hline
+	rst			& Input 	& 1-bit	& Reset IF module, set to 0 in CPU regular process mode\\ \hline
+	
+	\hline
+	\end{tabular}
+\end{center}
+\end{table}
+\subsection{ID Instruction Decoder}\label{sub:ID}
+
+\newpage
+\begin{landscape}
+\begin{scala}
+package piom32
+
+abstract trait DecodeConstants
+{
+// scalastyle:off
+	  def default: List[BitPat] =
+                //           jal                                                                 renf1             fence.i
+                //   val     | jalr                                                              | renf2           |
+                //   | fp_val| | renx2                                                           | | renf3         |
+                //   | | rocc| | | renx1     s_alu1                          mem_val             | | | wfd         | 
+                //   | | | br| | | | s_alu2  |       imm    dw     alu       | mem_cmd   mem_type| | | | div       | 
+                //   | | | | | | | | |       |       |      |      |         | |           |     | | | | | wxd     | fence
+                //   | | | | | | | | |       |       |      |      |         | |           |     | | | | | | csr   | | amo
+                //   | | | | | | | | |       |       |      |      |         | |           |     | | | | | | |     | | |
+                List(N,X,X,X,X,X,X,X,A_X,    B_X,    IMM_X, DW_X,  FN_X,     N,M_X,        MT_X, X,X,X,X,X,X,CSR.X,X,X,X)
+	val table: Array[(BitPat, List[BitPat])]
+// scalastyle:on
+}
+
+\end{scala}
+In \textit{instructions.scala}, all supported instructions (including standard ISA32 instructions and selected privileged instructions) are listed as \textit{BitPat}, shown as below:
+\begin{scala}
+object Instructions {
+  def ADD                = BitPat("b000000???????????????00000100000")
+  ... ...
+ }
+\end{scala}
+All the BitPat is listed in Appendix.\ref{sub:app.Inst}
+\end{landscape}
+
+%-------------------------------Evalu Req------------------------------------------
+
+\newpage
+\section{Compiler and OS} \label{sec:CompileOS}%------------------------------
+
+
+\begin{table}[htp]
+\caption{Signals Definition for Test Mode}\label{tab:signaldef}
+\begin{center}
+	\begin{tabular}{|l|l|l|p{6cm}|}
+	\hline
+	\textbf{Signal Name} & \textbf{Direction} & \textbf{Width} & \textbf{Function}\\ \hline \hline
+	boot			& Input 	& 1-bit	& Trigger the boot test mode, 
+									  set to 0 in CPU regular process mode\\ \hline
+	test\_im\_wr 	& Input	& 1-bit	& Instruction memory write enable in test mode,set to 0 in 	
+								  CPU regular process mode. In test mode, it will be set to 1 when if writing instructions to imem, otherwise it is set to 0.\\ \hline
+	test\_im\_re 	& Input & 1-bit & Instruction memory read enable in test mode,set to 0 in 	
+								  CPU regular process mode. In test mode, it will be set to 1 when if reading instructions out, otherwise it is set to 0. \\ \hline
+	test\_im\_addr 	& Input & 32-bit& Instruction memory address\\ \hline
+	test\_im\_in 	& Input & 32-bit& Instruction memory data input for test mode. \\ \hline
+	test\_im\_out 	& Output& 32-bit& Instruction memory data output for test mode. \\ \hline
+	test\_dm\_wr 	& Input	& 1-bit	& Data memory write enable in test mode,set to 0 in 	
+								  CPU regular process mode. In test mode, it will be set to 1 when if writing data to dmem, otherwise it is set to 0.\\ \hline
+	test\_dm\_re 	& Input & 1-bit & Data memory read enable in test mode,set to 0 in 	
+								  CPU regular process mode. In test mode, it will be set to 1 when if reading data out, otherwise it is set to 0.\\ \hline
+	test\_dm\_addr 	& Input & 32-bit& Data memory address\\ \hline
+	test\_dm\_in 	& Input & 32-bit& Data memory input for test mode. \\ \hline
+	test\_dm\_out 	& Output& 32-bit& Data memory output for test mode. \\ \hline
+	valid			& Output& 1-bit & If CPU stopped or any exception happens, valid signal is set to 0.\\ 
+	\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Additionally, a \code{valid} signal is highly recommended. It can be monitored to find whether CPU works correctly. As shown in Table \ref{tab:signaldef}, \code{valid} will be set to 0, if the fetched instruction is not defined in our 7-Inst ISA (e.g. \code{0xFFFFFFFF}), which is to tell test the CPU is working in exception.
+
+\subsection{Basic Logic for Test}\label{sub:testlogic}
+Please add the test logic into your top module as shown in Table \ref{tab:logic}.\\
+The \code{Top} Module is presented below, please \textbf{DO NOT} change any code of Top module:
+\begin{scala}
+package MultiCycle
+
+import chisel3._
+import chisel3.iotesters.Driver
+//import utils.ercesiMIPSRunner
+class TopIO extends Bundle() {
+	val boot = Input(Bool()) 
+// imem and dmem interface for Tests
+	val test_im_wr		= Input(Bool())
+	val test_im_rd 		= Input(Bool())
+	val test_im_addr 	= Input(UInt(32.W))
+	val test_im_in 		= Input(UInt(32.W))
+	val test_im_out 	= Output(UInt(32.W))
+
+	val test_dm_wr		= Input(Bool())
+	val test_dm_rd 		= Input(Bool())
+	val test_dm_addr 	= Input(UInt(32.W))
+	val test_dm_in 		= Input(UInt(32.W))
+	val test_dm_out 	= Output(UInt(32.W))
+
+	val valid			= Output(Bool())
+}
+
+class Top extends Module() {
+	val io 		= IO(new TopIO())//in chisel3, io must be wrapped in IO(...) 
+	val cpath	= Module(new CtlPath())
+	val dpath 	= Module(new DatPath())
+
+	cpath.io.ctl <> dpath.io.ctl
+	cpath.io.dat <> dpath.io.dat
+	io.valid := cpath.io.valid
+	cpath.io.boot := io.boot
+
+	val imm = Mem(256, UInt(32.W))
+	val dmm = Mem(1024, UInt(32.W))
+	io.test_dm_out := 0.U
+	io.test_im_out := 0.U
+	cpath.Inst := 0.U
+	when (io.boot && io.test_im_wr){
+		imm(io.test_im_addr >> 2) := io.test_im_in
+		cpath.Inst := 0.U
+	 } 
+	when (io.boot && io.test_dm_wr){
+		dmm(io.test_dm_addr >> 2) := io.test_dm_in
+		cpath.Inst := 0.U
+	} 
+	when (io.boot && io.test_im_rd){
+		io.test_im_out := imm(io.test_im_addr >> 2)
+		cpath.Inst := 0.U
+	} 
+	when (io.boot && io.test_dm_rd){
+		io.test_dm_out := dmm(io.test_dm_addr >> 2)
+		cpath.Inst := 0.U
+	} 
+	when (!io.boot){
+		cpath.Inst := Mux(io.boot, 0.U, imm(dpath.io.imem_addr >> 2))
+		dpath.io.dmem_datOut := dmm(dpath.io.dmem_addr >> 2)
+		when (cpath.io.MemWr) {
+			dmm(dpath.io.dmem_addr >> 2) := dpath.io.dmem_datIn
+		}
+	}
+}
+\end{scala}
+\begin{table}[htp]
+	\caption{Logic Operation in Test Mode}\label{tab:logic}
+	\begin{center}
+		\begin{tabular}{|l|c|c|}
+		\hline
+		\textbf{Operation}	& \textbf{Signal}	& \textbf{Boolean Logic} \\ \hline
+		\multirow{5}{*}{Imem Write}& boot		& 1 \\ \cline{2-3}
+							& test\_im\_wr 		& 1 \\ \cline{2-3}
+							& test\_im\_rd 		& 0 \\ \cline{2-3}
+							& test\_dm\_wr 		& 0 \\ \cline{2-3}
+							& test\_dm\_rd 		& 0 \\ \hline
+		\multirow{5}{*}{Dmem Write}& boot 		& 1 \\ \cline{2-3}
+							& test\_im\_wr 		& 0 \\ \cline{2-3}
+							& test\_im\_rd 		& 0 \\ \cline{2-3} 
+							& test\_dm\_wr 		& 1 \\ \cline{2-3}
+							& test\_dm\_rd 		& 0 \\ \hline
+		\multirow{5}{*}{Imem Read}& boot 		& 1 \\ \cline{2-3}
+							& test\_im\_wr 		& 0 \\ \cline{2-3}
+							& test\_im\_rd 		& 1 \\ \cline{2-3} 
+							& test\_dm\_wr 		& 0 \\ \cline{2-3}
+							& test\_dm\_rd 		& 0 \\ \hline
+		\multirow{5}{*}{Dmem Read}& boot 		& 1 \\ \cline{2-3}
+							& test\_im\_wr 		& 0 \\ \cline{2-3}
+							& test\_im\_rd 		& 0 \\ \cline{2-3} 
+							& test\_dm\_wr 		& 0 \\ \cline{2-3}
+							& test\_dm\_rd 		& 1 \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+% -----------------------------------Appendix----------------------------------------
+\appendix
+%\renewcommand{\appendixname}{Appendix~\Alph{section}}
+\section{Supported Instructions}\label{sub:app.Inst}
+
+\end{document}
+
